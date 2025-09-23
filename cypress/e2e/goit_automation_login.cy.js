@@ -38,4 +38,10 @@ describe('US01 login page', () => {
     cy.get('#header-email').should('contain', 'Giriş bilgileriniz hatalı')
   })
 
+  it('TC03 forgot my password button check', () => {
+    login.navigateUrl();
+    login.navigationPopUp();
+    login.forgotPswrd();
+  })
+
 })
