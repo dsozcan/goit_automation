@@ -4,6 +4,9 @@
   "email_user1": "abc@mail.com",
   "password_user1" : "Asdfg.12345",
   "email_wrong" : "abcmail.com",
-  "password_wrong" : "123456.Asdfg"
+  "password_wrong" : "123456.Asdfg",
+  "url_homepage": "https://www.kitapsepeti.com/",
+  "bookName": "harika",
+  "obsoleteBookName": "asdfgh"
 
 }

@@ -9,6 +9,7 @@ class login{
     loginButton = '#login-btn-322';
     rememberMeCheckbox = 'form.w-100 > .flex-wrap > .d-flex';
     registerButton = '#register-btn-322';
+    rememberMeButton = 'form.w-100 > .flex-wrap > .d-flex > .input-checkbox';
 
     // url visit method
     navigateUrl () {
