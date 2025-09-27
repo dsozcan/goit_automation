@@ -17,11 +17,11 @@ class guest{
     cargoOptions = '.payment-cargo-list > .p-2 > .text-uppercase';
 
 openPurchasePage () {
+    //select the first product from main page and go to purchase page by the button located at the pop up window
     cy.get('.product-item').first().realHover();
     cy.get('.product-item').first().find('.add-to-cart-btn')
     .should('be.visible').and('contain.text', 'Sepete Ekle').click();
-    cy.wait(3000);
-    cy.get(this.purchasePageBtn).click();
+    cy.get(this.purchasePageBtn, { timeout: 10000 }).click();
 }
 
 continueAsGuest () {
@@ -29,6 +29,7 @@ continueAsGuest () {
 }
 
 adressFormCheck () {
+    //check the required field in adress form
     cy.get(this.adressForm).should('contain.text', 'Ad Soyad')
     .and('contain.text', 'E-Mail')
     .and('contain.text', 'İl')
@@ -38,6 +39,7 @@ adressFormCheck () {
 }
 
 emptyFormError () {
+    //empty form sneding should return an visible error
     cy.get(this.saveAdressBtn).click();
     cy.get(this.emptyFormMessage).should('contain.text', 'Lütfen bu alanı doldurunuz');
 }

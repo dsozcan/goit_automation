@@ -51,12 +51,10 @@ class login{
         }
         cy.get(this.passwordField).type(password);
         cy.get(this.loginButton).click();
-       // cy.wait(5000);
-
     }
 
     // forgot password button check
-    forgotPswrd () {
+    forgotPassword () {
         cy.get(this.forgotPasswordField).click();
         cy.get(this.remindPasswordButton).should('exist');
     }

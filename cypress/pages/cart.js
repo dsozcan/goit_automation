@@ -21,23 +21,26 @@ class cart{
     emptyCartBtn = '#clear-cart-btn-129';
 
 navigateToCart () {
+    //got to cart button check
     cy.get(this.navigateCartBtn).click();
     cy.get(this.goToCartBtn).should('be.visible').click();
 }
 
 cartProductInformationCheck () {
+    //check if the required field in cart page is visible
     cy.get(this.productName).should('exist').and('be.visible');
     cy.get(this.productQuantity).should('exist').and('be.visible');
     cy.get(this.productPrice).should('exist').and('be.visible');
     cy.get(this.totalPrice).should('exist').and('be.visible');
 
-    cy.get(this.productPrice).invoke('text').then((priceText) => {
-        const productPrice = parseFloat(priceText.replace(/[^\d.,]/g, '').replace(',', '.'));
-        cy.get(this.productQuantity).invoke('val').then((qtyText) => {
-            const quantity = parseInt(qtyText.replace(/[^\d]/g, ''), 10);
-            cy.get(this.totalPrice).invoke('text').then((totalText) => {
+    //check if the price calculations are right in terms of piece price, quantity and total price
+    cy.get(this.productPrice).invoke('text').then((priceText) => {  //get the piece price
+        const productPrice = parseFloat(priceText.replace(/[^\d.,]/g, '').replace(',', '.'));//trim the price value to get only numbers
+        cy.get(this.productQuantity).invoke('val').then((qtyText) => {  //get the quantity
+            const quantity = parseInt(qtyText.replace(/[^\d]/g, ''), 10); 
+            cy.get(this.totalPrice).invoke('text').then((totalText) => {    //get the total price
                 const totalPrice = parseFloat(totalText.replace(/\./g, '').replace(',', '.'));
-                const expected = parseFloat((productPrice * quantity).toFixed(2));
+                const expected = parseFloat((productPrice * quantity).toFixed(2));  //check if the total price is equal to piece price time quantity
                 const actual = parseFloat(totalPrice.toFixed(2));
                 expect(actual).to.eq(expected);
             });
@@ -46,6 +49,7 @@ cartProductInformationCheck () {
 }
 
 cartTotalContainerInformationCheck () {
+    //check if the required field in cart page is visible
     cy.get(this.cartTotalContainer).should('contain.text', "Sepet Toplamı")
     .and('contain.text', 'Kargo Ücreti')
     .and('contain.text', 'Genel Toplam');
@@ -65,6 +69,7 @@ cartTotalContainerInformationCheck () {
 }
 
 increaseProductQuantity () {
+    //check if the total price is increased correctly when quantity is increased
     cy.get(this.totalPrice).invoke('text').then((priceText) => {
         const initialTotalPrice = parseFloat(priceText.replace(/\./g, '').replace(',', '.'));
         cy.get(this.productQuantity).invoke('val').then((qtyText) => {
@@ -86,6 +91,7 @@ increaseProductQuantity () {
 }
 
 deleteProductsTrashIcon () {
+    //check delete products icon function
     cy.get(this.trashIcon).click();
     cy.get(this.deleteProductsConfirmationPopUp).should('be.visible').and('contain.text','Sil');
     cy.get(this.deleteProductsBtn).click();
@@ -93,6 +99,7 @@ deleteProductsTrashIcon () {
 }
 
 navigateCartMainPage () {
+    //check got to my cart button function in main page
     cy.get('.product-item').first().realHover();
     cy.get('.product-item').first().find('.add-to-cart-btn')
     .should('be.visible').and('contain.text', 'Sepete Ekle').click();
@@ -102,6 +109,7 @@ navigateCartMainPage () {
 }
 
 navigateCartProductPage () {
+    //check got to my cart button function in product page
     cy.get(this.productCard).first().click();
     cy.get(this.productPageAddToCartBtn).click();
     cy.get(this.addCartBtn).click();

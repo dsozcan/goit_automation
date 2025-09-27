@@ -23,11 +23,11 @@ checkSearchBarEmpty () {
     cy.get(this.searchBar).should('be.empty');
 }
 
-//Check product cards
+//Check informations shown on product cards
 checkProductCard () {
     cy.get(this.productCard).first().within(() => { //select the first product card
         cy.get('img')
-        .should('be.visible') // check the visual
+        .should('be.visible') // check if the visual is visible
         .and(($img) => {
             expect($img[0].naturalWidth).to.be.greaterThan(0); //check if visual is loaded
         });
@@ -37,30 +37,30 @@ checkProductCard () {
     });
 }
 
-//Hover price button and check the change in the button
-hoverPriceButton() {
-  cy.get('.product-item')  //select any product card
+//Price button chould change text during hover action
+hoverPriceButton() {        //Hover price button and check the change in the button
+  cy.get('.product-item')   //select any product card
     .first()                //select the first product card
     .realHover();           //initialize hover
 
   cy.get('.product-item')
     .first()
     .find('.add-to-cart-btn')
-    .should('be.visible').and('contain.text', 'Sepete Ekle'); //check text
+    .should('be.visible').and('contain.text', 'Sepete Ekle'); //check the change in text
 }
 
 searchResultCheck(bookName) {
-  cy.get(this.productCard).first().invoke('text').then(text => {
-    const normalizedText = text.toLowerCase().trim();
-    expect(normalizedText).to.contain(bookName.toLowerCase());
+  cy.get(this.productCard).first().invoke('text').then(text => {  //get the text from product card
+    const normalizedText = text.toLowerCase().trim();             //make the text lower case for comparison
+    expect(normalizedText).to.contain(bookName.toLowerCase());    //search the keyword in the text
   });
 }
 
 obsoleteSearchResultCheck() {
-  cy.get(this.productCard).should('not.exist');
+  cy.get(this.productCard).should('not.exist');   //no result must have shown in obsolete search
 }
 
-sortButtonCheck () {
+sortButtonCheck () {    //check if all options are being shown in sort
   cy.get(this.sortOptions).should('contain.text', 'Fiyat Artan');
   cy.get(this.sortOptions).should('contain.text', 'Fiyat Azalan');
   cy.get(this.sortOptions).should('contain.text', 'Varsayılan Sıralama');
@@ -68,45 +68,40 @@ sortButtonCheck () {
   cy.get(this.sortOptions).should('contain.text', 'Eskiden Yeniye');
 }
 
-sortingCheck () {
-  cy.get(this.sortButton).select('Fiyat Azalan');
-cy.get('.product-price')
-  .then(($prices) => {
-    const priceArray = [...$prices].map(priceEl => {
-      const priceText = priceEl.innerText.trim();
-      return parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
-    });
-
-    const sortedDesc = [...priceArray].sort((a, b) => b - a);
-
-    // Debug için logla
-    cy.log('Original prices: ' + priceArray.join(', '));
-    cy.log('Sorted (desc): ' + sortedDesc.join(', '));
-    console.log('Original:', priceArray);
-    console.log('Sorted Desc:', sortedDesc);
-
-    expect(priceArray, 'Prices should be in descending order').to.deep.equal(sortedDesc);
-  }); 
+sortingCheck() {     //check the results of sorting
+  cy.get(this.sortButton).select('Fiyat Azalan');   //price decreased is selected
+  cy.get('.product-price')
+    .then(($prices) => {
+      const priceArray = [...$prices].map(priceEl => {    //take all prices in order
+        const priceText = priceEl.innerText.trim();
+        return parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));  //trim values for comparison
+      });
+      const sortedDesc = [...priceArray].sort((a, b) => b - a);  //manual descending and comparison
+      const isEqual = sortedDesc.every((val, i) => val === priceArray[i]);
+      cy.log('Price Array: ' + JSON.stringify(priceArray));
+      cy.log('Sorted Desc: ' + JSON.stringify(sortedDesc));
+      expect(isEqual).to.be.true;               //compare lists
+    }); 
 }
 
-filterCategoryCheck () {
+filterCategoryCheck () {      //check if all categories are visible
   cy.get(this.filterCategory)
     .should('contain.text', 'Kategoriler')
     .and('contain.text', 'Marka')
     .and('contain.text', 'Model')
-  cy.get('#filter-categories-1012').click();
-  cy.url().should('include', 'category=1012');
+  cy.get('#filter-categories-1012').click();      //select a category
+  cy.url().should('include', 'category=1012');    //check if the selected category is being shown
 }
 
 scrollToLoadPage () {
-  // Mevcut ürün sayısını al
+  // Get the product count in initial state
 cy.get('.product-item').then(($products) => {
   const initialCount = $products.length;
 
-  // Scroll yap
+  // scroll to bottom
   cy.scrollTo('bottom');
 
-  // Yeni ürünlerin eklenmesini bekle ve sayıyı kontrol et
+  // wait till the new products loaded and get the new count
   cy.get('.product-item', { timeout: 10000 }).should('have.length.greaterThan', initialCount);
 });
 }

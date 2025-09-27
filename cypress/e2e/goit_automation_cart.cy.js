@@ -25,20 +25,20 @@ describe("Product deatil page tests", () => {
   });
 
     it('TC01 - Cart Information Page Information Check', () => {
-        product_detail.selectBook();
-        product_detail.addCart();
-        cart.navigateToCart();
-        cart.cartProductInformationCheck();
-        cart.cartTotalContainerInformationCheck();
-        cart.increaseProductQuantity();
-        cart.deleteProductsTrashIcon();
+        product_detail.selectBook();      //select the first book from main page
+        product_detail.addCart();         //add selected book to cart for checks
+        cart.navigateToCart();            //check cart navigation buttons
+        cart.cartProductInformationCheck(); //check the required fields on cart page
+        cart.cartTotalContainerInformationCheck();    //check the cart cummary calculations
+        cart.increaseProductQuantity();   //check the product quantity increase procedur
+        cart.deleteProductsTrashIcon();   //delete products from cart button check
   })
 
     it('TC02 - Add to cart, Purchase and Delete Items Button Check', () => {
-        cart.navigateCartMainPage();
+        cart.navigateCartMainPage();    //check cart navigation buttons
         cy.visit(user.url);
-        cart.navigateCartProductPage();
-        cart.purchaseButtonCheck();
+        cart.navigateCartProductPage(); //check cart navigation buttons
+        cart.purchaseButtonCheck();    
         cart.emptyCartBtnCheck();
   })
   

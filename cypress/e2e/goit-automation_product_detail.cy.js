@@ -14,9 +14,9 @@ describe("US03 -  Product deatil page tests", () => {
   })
 
   it('TC01 - Product detail page elemnts check', () => {
-    product_detail.selectBook();
-    product_detail.addCart();
-    product_detail.emptyCart();
+    product_detail.selectBook();      //select the first item from main page
+    product_detail.addCart();         //add item to cart and check if the count is increase
+    product_detail.emptyCart();       //delete all items from the cart for future tests.
   })
 
 });

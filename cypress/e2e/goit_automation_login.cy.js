@@ -45,7 +45,7 @@ describe('US01 - login pagnpe', () => {
   it('TC03 forgot my password button check', () => {
     login.navigateUrl();
     login.navigationPopUp();
-    login.forgotPswrd();
+    login.forgotPassword();
   })
 
   it.skip('TC04 multiple login request error', () => {

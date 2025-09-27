@@ -39,6 +39,7 @@ selectPaymentType () {
 }
 
 payWithCard () {
+    //card payment form should include required field and name of the field should be written as placeholders
     cy.get(this.cardPaymentSelection).click();
     const placeholders = [
         'Kart Üzerindeki Ad Soyad',
@@ -55,6 +56,7 @@ payWithCard () {
 }
 
 incompleteFormError () {
+    //empty form sending thould return a visible error
     cy.get(this.completePaymentBtn).click()
     cy.get(this.incompleteFormMessage).should('exist')
     .and('contain.text', 'Lütfen tüm alanları doldurunuz');
@@ -69,6 +71,7 @@ fillPaymentForm () {
 }
 
 orderSummaryCheck () {
+    //order summary container should include 3 areas and the calculation must be correct
     cy.get(this.orderSummaryContainer).should('contain.text', "Sepet Toplamı")
     .and('contain.text', 'Kargo Ücreti')
     .and('contain.text', 'Genel Toplam');

@@ -29,36 +29,36 @@ describe("US02 - Search Tests", () => {
 
 
   it("TC01 - Search valid keyword and check actions", () => {
-    search.searchBook('a');
-    search.checkSearchBarEmpty ();
-    search.checkProductCard ();
-    search.hoverPriceButton ();
+    search.searchBook('a');         //search any keyword
+    search.checkSearchBarEmpty ();  //check the searchbar is empty after search is completed
+    search.checkProductCard ();     //check the product card informations are full
+    search.hoverPriceButton ();     //inspect the change in price button during hover action
   });
 
   it("TC02 - Search results check", () => {
-    search.searchBook(user.bookName);
-    search.searchResultCheck(user.bookName);
+    search.searchBook(user.bookName);         //search a keyword
+    search.searchResultCheck(user.bookName);  //check if the results are relevant
   })
 
   it("TC03 - Obsolete earch results check", () => {
-    search.searchBook(user.obsoleteBookName);
-    search.obsoleteSearchResultCheck();
+    search.searchBook(user.obsoleteBookName);   //search an onsolete keyword
+    search.obsoleteSearchResultCheck();         //check that no results are being shown
   })
 
   it("TC04 - Search results sorting check", () => {
     search.searchBook(user.bookName);
-    search.sortButtonCheck();
-    search.sortingCheck();
+    search.sortButtonCheck();           //sort button variable check
+    search.sortingCheck();              //sorting results check
   })
 
   it("TC05 - Scroll for new page test", () => {
     search.searchBook(user.bookName);
-    search.scrollToLoadPage();
+    search.scrollToLoadPage();        //check if new page is being loaded when scrolled to bottom
   })
 
   it("TC06 - Filter results check", () => {
     search.searchBook(user.bookName);
-    search.filterCategoryCheck();
+    search.filterCategoryCheck();   //filter action results check
   })
 
 });
