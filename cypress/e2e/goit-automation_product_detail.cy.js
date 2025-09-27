@@ -16,6 +16,7 @@ describe("Product deatil page tests", () => {
   it('TC01 - Product detail page elemnts check', () => {
     product_detail.selectBook();
     product_detail.addCart();
+    product_detail.emptyCart();
   })
 
 });

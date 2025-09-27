@@ -33,7 +33,7 @@ addCart () {
       const initialCount = parseInt(text.trim(), 10) || 0;
 
         cy.get(this.addCartBtn).click().should('be.visible');
-        cy.wait(2000);
+        cy.wait(3000);
         cy.get(this.popUp).should('exist');
         cy.get(this.popUpClose).click();
         cy.log(cy.get(this.cartItem));
@@ -47,6 +47,11 @@ addCart () {
         });
     });
 
+}
+
+emptyCart () {
+    cy.get('.cart-general').click();
+    cy.get('.custom-close').click();
 }
 
 }
