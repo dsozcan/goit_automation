@@ -7,7 +7,7 @@ import cart from "../pages/cart"
 
 //ignore any error caused by the application
 Cypress.on('uncaught:exception', (err, runnable) => {
-console.error('Uncaught exception:', err.message);
+console.error('US04 - Uncaught exception:', err.message);
 return false;
 });
 

@@ -9,7 +9,7 @@ return false;
 });
 
 //open url and login before tests (function defined in support)
-describe("Search Tests", () => {
+describe("US02 - Search Tests", () => {
   
   beforeEach(function () {
     if (this.currentTest.title === "TC01 - Search valid keyword and check actions") {

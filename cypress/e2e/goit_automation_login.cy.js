@@ -7,7 +7,7 @@ console.error('Uncaught exception:', err.message);
 return false;
 });
 
-describe('US01 login pagnpe', () => {
+describe('US01 - login pagnpe', () => {
 
   it('TC01 user login positive test', () => {
     login.navigateUrl();

@@ -20,6 +20,7 @@ openPurchasePage () {
     cy.get('.product-item').first().realHover();
     cy.get('.product-item').first().find('.add-to-cart-btn')
     .should('be.visible').and('contain.text', 'Sepete Ekle').click();
+    cy.wait(3000);
     cy.get(this.purchasePageBtn).click();
 }
 

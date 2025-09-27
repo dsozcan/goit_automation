@@ -7,7 +7,7 @@ return false;
 });
 
 //open url and login before tests (function defined in support)
-describe("Product deatil page tests", () => {
+describe("US03 -  Product deatil page tests", () => {
   
   before(function () {
     cy.login();

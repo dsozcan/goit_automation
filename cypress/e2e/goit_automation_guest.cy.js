@@ -4,7 +4,7 @@ import guest from "../pages/guest"
 
 //ignore any error caused by the application
 Cypress.on('uncaught:exception', (err, runnable) => {
-console.error('Uncaught exception:', err.message);
+console.error('US06 - Uncaught exception:', err.message);
 return false;
 });
 
