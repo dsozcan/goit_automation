@@ -22,6 +22,7 @@ describe("US05 - Payment Page Tests", () => {
     payment.selectPaymentType();
     payment.payWithCard();
     payment.incompleteFormError();
+    cy.screenshot();
     payment.fillPaymentForm();
     payment.orderSummaryCheck();
   });

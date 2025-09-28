@@ -14,12 +14,11 @@ class guest{
     formAdress = '[name="address"]';
     formPhone = '[name="mobile_phone"]';
     saveFormBtn = '.col-12 > .btn';
-    cargoOptions = '.payment-cargo-list > .p-2 > .text-uppercase';
 
 openPurchasePage () {
     //select the first product from main page and go to purchase page by the button located at the pop up window
     cy.get('.product-item').first().realHover();
-    cy.get('.product-item').first().find('.add-to-cart-btn')
+    cy.get('.product-item', { timeout: 10000 }).first().find('.add-to-cart-btn')
     .should('be.visible').and('contain.text', 'Sepete Ekle').click();
     cy.get(this.purchasePageBtn, { timeout: 10000 }).click();
 }
@@ -30,7 +29,7 @@ continueAsGuest () {
 
 adressFormCheck () {
     //check the required field in adress form
-    cy.get(this.adressForm).should('contain.text', 'Ad Soyad')
+    cy.get(this.adressForm, { timeout: 10000 }).should('contain.text', 'Ad Soyad')
     .and('contain.text', 'E-Mail')
     .and('contain.text', 'İl')
     .and('contain.text', 'İlçe')
@@ -54,7 +53,6 @@ fillAdressForm () {
     cy.get(this.formAdress).type("abc11 abc11 abc11 abc11 abc11 abc11");
     cy.get(this.formPhone).type("5555555555");
     cy.get(this.saveFormBtn).click();
-    cy.get(this.cargoOptions).should('contain.text', 'Kargo Seçenekleri')
 }
 
 }

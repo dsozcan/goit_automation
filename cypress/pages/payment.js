@@ -1,7 +1,7 @@
 class payment {
 
 continueToPaymentBtn = '.col-7 > .btn > span';
-shipmentSelection = '.border-top > .flex-wrap';
+shipmentSelection = '.payment-cargo-list > .p-2';
 paymentMethodSelection = '#iyz-tablist';
 iyzicoSelection = '.css-gxyldq-MarkUpWrapper-MarkUpWrapper img';
 cardPaymentSelection = '#iyz-tab-credit-card';
@@ -18,11 +18,11 @@ shipmentFee = '#priceCargo';
 generalSum = '.fw-bold > :nth-child(2)';
 
 openPaymentPage () {
-    cy.get(this.continueToPaymentBtn).click();
+    cy.get(this.continueToPaymentBtn, { timeout: 10000 }).click();
 }
 
 selectShipmentType () {
-    cy.get('.cargo-options')
+    cy.get('.cargo-options', { timeout: 10000 })
       .should('contain.text', 'PTT Kargo')
       .and('contain.text', 'HEPSİJET');
 

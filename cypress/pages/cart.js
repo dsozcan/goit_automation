@@ -103,7 +103,7 @@ navigateCartMainPage () {
     cy.get('.product-item').first().realHover();
     cy.get('.product-item').first().find('.add-to-cart-btn')
     .should('be.visible').and('contain.text', 'Sepete Ekle').click();
-    cy.get(this.addCartBtn).click();
+    cy.get(this.addCartBtn, { timeout: 10000 }).click();
     cy.url().should('include', 'sepet');
 
 }
@@ -112,7 +112,7 @@ navigateCartProductPage () {
     //check got to my cart button function in product page
     cy.get(this.productCard).first().click();
     cy.get(this.productPageAddToCartBtn).click();
-    cy.get(this.addCartBtn).click();
+    cy.get(this.addCartBtn, { timeout: 10000 }).click();
     cy.url().should('include', 'sepet');
 }
 

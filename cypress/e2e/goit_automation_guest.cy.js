@@ -26,6 +26,7 @@ describe("Product deatil page tests", () => {
         guest.continueAsGuest();
         guest.adressFormCheck();
         guest.emptyFormError();
+        cy.screenshot()
         guest.fillAdressForm();
   })
 })

@@ -29,20 +29,24 @@ describe("US02 - Search Tests", () => {
 
 
   it("TC01 - Search valid keyword and check actions", () => {
-    search.searchBook('a');         //search any keyword
+    cy.get(search.loginButton, { timeout: 10000 }).should('not.exist');
+    search.searchBook('b');         //search any keyword
     search.checkSearchBarEmpty ();  //check the searchbar is empty after search is completed
     search.checkProductCard ();     //check the product card informations are full
     search.hoverPriceButton ();     //inspect the change in price button during hover action
+    cy.screenshot();
   });
 
   it("TC02 - Search results check", () => {
     search.searchBook(user.bookName);         //search a keyword
     search.searchResultCheck(user.bookName);  //check if the results are relevant
+    cy.screenshot();
   })
 
   it("TC03 - Obsolete earch results check", () => {
     search.searchBook(user.obsoleteBookName);   //search an onsolete keyword
     search.obsoleteSearchResultCheck();         //check that no results are being shown
+    cy.screenshot();
   })
 
   it("TC04 - Search results sorting check", () => {

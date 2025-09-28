@@ -24,7 +24,8 @@ describe('US01 - login pagnpe', () => {
     login.navigationPopUp();
     login.userLogIn(user.email_wrong,user.password_user1);
     //error pop up control
-    cy.get('.popover-item.fade-in').should('contain', 'Giriş bilgileriniz hatalı')
+    cy.get('.popover-item.fade-in').should('contain', 'Giriş bilgileriniz hatalı');
+    cy.screenshot();
 
 
     //login attempt with wrong password
@@ -46,6 +47,7 @@ describe('US01 - login pagnpe', () => {
     login.navigateUrl();
     login.navigationPopUp();
     login.forgotPassword();
+    cy.screenshot();
   })
 
   it.skip('TC04 multiple login request error', () => {

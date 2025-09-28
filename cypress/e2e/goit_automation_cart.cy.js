@@ -28,6 +28,7 @@ describe("Product deatil page tests", () => {
         product_detail.selectBook();      //select the first book from main page
         product_detail.addCart();         //add selected book to cart for checks
         cart.navigateToCart();            //check cart navigation buttons
+        cy.screenshot();
         cart.cartProductInformationCheck(); //check the required fields on cart page
         cart.cartTotalContainerInformationCheck();    //check the cart cummary calculations
         cart.increaseProductQuantity();   //check the product quantity increase procedur
@@ -39,6 +40,7 @@ describe("Product deatil page tests", () => {
         cy.visit(user.url);
         cart.navigateCartProductPage(); //check cart navigation buttons
         cart.purchaseButtonCheck();    
+        cy.screenshot();
         cart.emptyCartBtnCheck();
   })
   
