@@ -3,4 +3,5 @@
 ![Test Screenshot](./cypress/screenshots/)
 [Test Video](./cypress/videos/)
 
-![alt text](image.png)
+![Test Case Coverage Matix](image.png)
+[Test Case Strategy] (.Automation Project/test_coverage_sablon.xlsx)
